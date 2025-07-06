@@ -1,42 +1,49 @@
 import React from 'react';
-import { Store, Globe, Home, TrendingUp, Target, Smartphone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Store, Globe, Home, TrendingUp, Target, Smartphone, ArrowRight } from 'lucide-react';
 
 const services = [
   {
     icon: <Store className="w-8 h-8" />,
     title: "Retail Store Marketing",
     description: "Transform your physical store into a customer magnet with strategic in-store marketing, visual merchandising, and local advertising campaigns.",
-    features: ["In-Store Displays", "Local SEO", "Customer Experience Design", "Foot Traffic Analytics"]
+    features: ["In-Store Displays", "Local SEO", "Customer Experience Design", "Foot Traffic Analytics"],
+    path: "/services/retail-marketing"
   },
   {
     icon: <Globe className="w-8 h-8" />,
     title: "E-Commerce & Online Stores",
     description: "Boost your online presence with conversion-optimized websites, digital advertising, and comprehensive e-commerce strategies.",
-    features: ["Website Development", "Online Advertising", "Conversion Optimization", "Social Commerce"]
+    features: ["Website Development", "Online Advertising", "Conversion Optimization", "Social Commerce"],
+    path: "/services/ecommerce"
   },
   {
     icon: <Home className="w-8 h-8" />,
     title: "Real Estate Marketing",
     description: "Sell properties faster and at better prices with targeted marketing campaigns, virtual tours, and lead generation systems.",
-    features: ["Property Photography", "Virtual Tours", "Lead Generation", "Market Analysis"]
+    features: ["Property Photography", "Virtual Tours", "Lead Generation", "Market Analysis"],
+    path: "/services/real-estate"
   },
   {
     icon: <Target className="w-8 h-8" />,
     title: "Brand Development",
     description: "Build powerful brand identities that resonate with your target audience across all touchpoints and marketing channels.",
-    features: ["Logo Design", "Brand Guidelines", "Market Positioning", "Brand Strategy"]
+    features: ["Logo Design", "Brand Guidelines", "Market Positioning", "Brand Strategy"],
+    path: "/services/brand-development"
   },
   {
     icon: <TrendingUp className="w-8 h-8" />,
     title: "Digital Advertising",
     description: "Maximize ROI with data-driven advertising campaigns across Google, Facebook, Instagram, and other high-converting platforms.",
-    features: ["Google Ads", "Social Media Ads", "Retargeting", "Performance Analytics"]
+    features: ["Google Ads", "Social Media Ads", "Retargeting", "Performance Analytics"],
+    path: "/services/digital-advertising"
   },
   {
     icon: <Smartphone className="w-8 h-8" />,
     title: "Social Media Management",
     description: "Engage your audience and build community with strategic social media content, influencer partnerships, and community management.",
-    features: ["Content Creation", "Community Management", "Influencer Marketing", "Social Analytics"]
+    features: ["Content Creation", "Community Management", "Influencer Marketing", "Social Analytics"],
+    path: "/services/social-media"
   }
 ];
 
@@ -55,9 +62,10 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div
+            <Link
               key={index}
-              className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-8 rounded-2xl hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 hover:border-gray-600 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+              to={service.path}
+              className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-8 rounded-2xl hover:bg-gradient-to-br hover:from-gray-700 hover:to-gray-800 hover:border-gray-600 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl block"
             >
               <div className="text-white mb-6 transition-colors duration-500 group-hover:text-gray-100">
                 {service.icon}
@@ -71,7 +79,7 @@ const Services = () => {
                 {service.description}
               </p>
               
-              <ul className="space-y-2">
+              <ul className="space-y-2 mb-6">
                 {service.features.map((feature, idx) => (
                   <li
                     key={idx}
@@ -82,7 +90,12 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+
+              <div className="flex items-center text-white group-hover:text-gray-100 transition-colors duration-500">
+                <span className="text-sm font-medium">Learn More</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </Link>
           ))}
         </div>
 
